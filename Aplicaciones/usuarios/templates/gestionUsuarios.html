@@ -25,6 +25,31 @@
                     <div class="form-group">
                         <input type="text" name="numCelular" id="numCelular" class="form-control" placeholder="# de celular" required>
                     </div>
+                    
+                    <label for="txtProfesion1">Profesion</label>
+                    <select name="txtProfesion1">
+                        
+                        {% for p in profesiones %}
+                            <option value="{{ p.id }}">{{ p.profesion }}</option>
+                        {% endfor %}
+                    </select>
+
+                    
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+            <div class="card-body">
+                <form action="/registrarProfesion/" method="post">{% csrf_token %}
+                    
+                    <div class="form-group">
+                        <input type="text" name="txtProfesion" id="txtProfesion" class="form-control" placeholder="profesion" required>
+                    </div>
+                    
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
                     </div>
@@ -36,24 +61,50 @@
         <h1>Listado de Usuarios</h1>
         <div class="table-responsive py-2">
             <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Celular</th>
+            <th>Profesión</th>
+            <th colspan="2">Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in usuarios %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ u.nombre }}</td>
+            <td>{{ u.telefono }}</td>
+            <td>{{ u.profesion.profesion }}</td>
+            <td><a href="edicionUsuarios/{{ u.id }}" class="btn btn-info">Editar</a></td>
+            <td><a href="eliminarUsuarios/{{ u.id }}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        </div>
+         <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de Profesiones</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
-                        <th>Celular</th>
-                        <th colspan="2">Opciones</th>
+                        <th>Nombre Profesion</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
-                    {% for u in usuarios %}
+                    {% for p in profesiones %}
                     <tr>
                         <td>{{forloop.counter}}</td>
                         
-                        <td>{{u.nombre}}</td>
-                        <td>{{u.telefono}}</td>
+                        <td>{{p.profesion}}</td>
                         
-                        <td><a href="edicionUsuarios/{{u.id}}" class="btn btn-info">Editar</a></td>
-                        <td><a href="eliminarUsuarios/{{u.id}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                        
+                        <td><a href="edicionProfesion/{{p.id}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarProfesion/{{p.id}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                         
                     </tr>
                     {% endfor %}

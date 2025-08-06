@@ -7,5 +7,10 @@ urlpatterns = [
     path('registrarUsuarios/', views.crearUsuario),
     path('edicionUsuarios/<id>',views.edicionUsuario),
     path('eliminarUsuarios/<id>',views.eliminarUsuario),
-    path('editarUsuario/',views.editarUsuarios)
+    path('editarUsuario/',views.editarUsuarios),
+    path('registrarProfesion/',views.registrarProfesion),
+    path('edicionProfesion/<id>', views.edicionProfesion),
+    path('editarProfesion/',views.editarProfesion),
+    path('eliminarProfesion/<id>',views.eliminarProfesion)
+
 ]
